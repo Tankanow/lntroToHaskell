@@ -1,4 +1,4 @@
-module Hw1 where
+module CreditCard where
 
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev n
@@ -15,4 +15,8 @@ doubleEveryOther (x:y:xs)
   | mod (length(xs)) 2 /= 0 = x : (2 * y) : doubleEveryOther xs
   | otherwise               = (2 * x) : y : doubleEveryOther xs
 
---sumDigits :: [Integer] -> Integer
+sumDigits :: [Integer] -> Integer
+sumDigits xs = sum (concat (map toDigits xs))
+
+validate :: Integer -> Bool
+validate x = rem (sumDigits (doubleEveryOther (toDigits x))) 10 == 0
